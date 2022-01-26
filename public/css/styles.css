@@ -1,0 +1,12 @@
+.nav,header{
+    background-color:#3d5a80;
+    
+}
+.nav a {
+    color: #83af9b;
+}
+#home-title{
+background-color: #83af9b;
+width: fit-content;
+color:#3d5a80
+}
