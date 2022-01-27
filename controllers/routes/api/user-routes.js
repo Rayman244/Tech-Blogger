@@ -1,5 +1,7 @@
 const router = require("express").Router();
+const bcrypt = require('bcrypt');
 const {User,Blog} = require('../../../models')
+const saltRounds = 10;
 
 // Read All
 router.get("/", async (req, res) => {
@@ -13,6 +15,7 @@ router.get("/", async (req, res) => {
       res.status(500).json(err);
     }
   });
+
 // READ
   router.get("/:id", async (req, res) => {
     // find user by its id
@@ -30,7 +33,9 @@ router.get("/", async (req, res) => {
   router.post("/", async (req, res) => {
     // create a new user
     try {
-      const userData = await User.create(req.body);
+      const newUser = req.body
+      newUser.hashedPassword = await bcrypt.hash(req.body.hashedPassword, saltRounds);
+      const userData = await User.create(newUser);
       if (!userData) {
         res.status(404).json({ message: "Please try again!" });
         return;
@@ -40,6 +45,7 @@ router.get("/", async (req, res) => {
       res.status(500).json(err);
     }
   });
+
 //   UPDATE
   router.put("/:id", async (req, res) => {
     // update a category by its `id` value

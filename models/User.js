@@ -39,10 +39,9 @@ User.init(
       },
     },
     hashedPassword: {
-      type: DataTypes.STRING(64),
+      type: DataTypes.STRING,
       allowNull:false,
       validate: {
-        isAlphanumeric: true,
         notNull: true,
       },
     },
