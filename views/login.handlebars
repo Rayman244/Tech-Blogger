@@ -1,17 +1,35 @@
-<form>
-  <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="email"/>
+<div>
+  <div class="row justify-content-evenly">
+    <form class="container col-4" id="login-form">
+      <h3>Log In</h3>
+      <div class="mb-3">
+        <label for="email-field" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email-field" />
+      </div>
+      <div class="mb-3">
+        <label for="password-field" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password-field" />
+      </div>
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
   </div>
-  <div class="mb-3">
-    <label for="hashedPassword" class="form-label">Password</label>
-    <input type="password" class="form-control" id="hashedPassword"/>
+  <div class="row justify-content-evenly mt-4">
+    <form class="container col-4" id="signup-form">
+      <h3>Sign Up</h3>
+      <div class="mb-3">
+        <label for="username-signup" class="form-label">Username</label>
+        <input class="form-control" id="username-signup" />
+      </div>
+      <div class="mb-3">
+        <label for="email-signup" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email-signup" />
+      </div>
+      <div class="mb-3">
+        <label for="password-signup" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password-signup" />
+      </div>
+      <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
-
-<script src="./js/login.js"></script>
+</div>
+<script src="/js/login.js"></script>

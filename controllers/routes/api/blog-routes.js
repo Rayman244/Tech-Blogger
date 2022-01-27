@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
  router.post("/", async (req, res) => {
     // create a new user
     try {
-      const blogData = await Blog.create(req.body);
+      const blogData = await Blog.create(req.body,req.session.id);
       if (!blogData) {
         res.status(404).json({ message: "Please try again!" });
         return;
@@ -67,7 +67,7 @@ router.get("/", async (req, res) => {
   });
 //   Delete
 router.delete("/:id", async (req, res) => {
-    // delete a user
+    // delete a blog
     try {
       const blogData = await Blog.destroy({
         where: {
