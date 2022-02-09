@@ -1,19 +1,21 @@
 const router = require("express").Router();
-const {User,Blog} = require('../../../models')
+const {User,Blog,Comment} = require('../../../models');
 
 // Read All
 router.get("/", async (req, res) => {
     // find all users
     try {
       const blogData = await Blog.findAll({
-        include: [{ model: User }],
+        include: [{ model: User },
+          // { model: Comment }
+        ],
       });
       res.status(200).json(blogData);
     } catch (err) {
       res.status(500).json(err);
     }
   });
-  // READ
+  // READ by id
   router.get("/:id", async (req, res) => {
     // find user by its id
     try {
@@ -28,9 +30,17 @@ router.get("/", async (req, res) => {
 
  // CREATE
  router.post("/", async (req, res) => {
-    // create a new user
+    // create a new blog
     try {
-      const blogData = await Blog.create(req.body,req.session.id);
+      const data = req.body
+      const dataJsoned = {
+        "blog_title": `${data.blog_title}`,
+        "blog_content": `${data.blog_content}`,
+        "user_id": req.session.user_id
+      }
+      console.log(dataJsoned);
+      const blogData = await Blog.create(dataJsoned);
+      console.log(blog);
       if (!blogData) {
         res.status(404).json({ message: "Please try again!" });
         return;
@@ -47,7 +57,7 @@ router.get("/", async (req, res) => {
       const blogData = await Blog.update(
       {
         blog_title: req.body.blog_title,
-        blog_content: req.body.blog_content
+        blog_content: req.body.blog_content,
       },
       {
         where: {

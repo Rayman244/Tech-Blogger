@@ -1,0 +1,10 @@
+<div class="container">
+
+ <div>
+  <h2>Welcome {{user_name}}</h2>
+ </div>
+
+{{#each blogs as |blog|}}
+{{> user-blogs}}
+{{/each}}
+</div>

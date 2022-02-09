@@ -1,3 +1,5 @@
+
+
 const postBlogHandler = async ( event )=>{
     event.preventDefault();
     const blog_title = document.querySelector('#blog-title').value.trim()
@@ -9,7 +11,6 @@ const postBlogHandler = async ( event )=>{
             body:JSON.stringify({blog_title,blog_content}),
             headers: { 'Content-Type': 'application/json' },
           })
-          console.log(response);
         if (response.ok) {
             document.location.replace('/');
           } else {

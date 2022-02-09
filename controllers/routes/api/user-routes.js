@@ -31,11 +31,11 @@ router.get("/", async (req, res) => {
 
 // CREATE
   router.post("/", async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     // create a new user
     try {
       const newUser = req.body
-      newUser.hashedPassword = await bcrypt.hash(req.body.hashedPassword, saltRounds);
+      // newUser.hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
       const userData = await User.create(newUser);
       if (!userData) {
         res.status(404).json({ message: "Please try again!" });
@@ -43,9 +43,10 @@ router.get("/", async (req, res) => {
       }
       req.session.save(() => {
         req.session.loggedIn = true;
-        req.session.username = userData.id
-      res.status(200).json(userData);
+        req.session.user_id = userData.dataValues.id
+       res.status(200).json(userData);
       });
+        
     } catch (err) {
       res.status(500).json(err);
     }
@@ -59,7 +60,7 @@ router.get("/", async (req, res) => {
           email: req.body.email,
         },
       });
-  
+      // console.log(dbUserData.dataValues.id);
       if (!dbUserData) {
         res
           .status(400)
@@ -75,10 +76,9 @@ router.get("/", async (req, res) => {
           .json({ message: 'Incorrect email or password. Please try again!' });
         return;
       }
-  
       req.session.save(() => {
         req.session.loggedIn = true;
-  
+        req.session.user_id = dbUserData.dataValues.id
         res
           .status(200)
           .json({ user: dbUserData, message: 'You are now logged in!' });

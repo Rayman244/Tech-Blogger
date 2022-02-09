@@ -1,11 +1,19 @@
 <div class="card">
   <div class="card-header">
-    Posted by:
-    {{user.username}}
+    Posted by: {{user.username}} <p>on {{format_date createdAt}}</p>
   </div>
   <div class="card-body text-center">
     <h5 class="card-title">{{blog_title}}</h5>
     <p class="card-text">{{blog_content}}</p>
-    <a href="#" class="btn btn-primary">Comment</a>
+    <a href='/blog/{{id}}' class="btn btn-primary">Comment</a>
+  </div>
+  <div>
+  {{#each comments as |comment|}}
+  {{> comments}}
+  {{else}}
+  <div class='card'>
+    <p class='text-center'>No comments. Add one!</p>
+  </div>
+  {{/each}}
   </div>
 </div>

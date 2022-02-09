@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-header">
+    Posted by: {{user}} <p>on {{format_date date}}</p>
+  </div>
+  <div class="card-body text-center">
+    <h5 class="card-title">{{title}}</h5>
+    <p class="card-text">{{content}}</p>
+  </div>
+  <div>
+  {{#each comments as |comment|}}
+  {{> comment}}
+  {{else}}
+  <div class='card'>
+    <p class='text-center'>No comments. Add one!</p>
+  </div>
+  {{/each}}
+  </div>
+<div>
+    <form class="container">
+  <div class="mb-3">
+    <label for="comment-field" class="form-label">Comment Here</label>
+    <textarea
+      class="form-control"
+      id="comment-field"
+      rows="3"
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary" id="postBtn">Submit</button>
+</form>
+</div>
+</div>
