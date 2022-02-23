@@ -74,8 +74,8 @@ router.get('/blog/:id',async (req,res)=>{
   const title = dataSerial.blog_title
   const date = dataSerial.createdAt
   const content = dataSerial.blog_content 
-  console.log(user);
-  console.log(blogData.get({plain:true}));
+  // console.log(user);
+  // console.log(blogData.get({plain:true}));
   res.status(200).render('comment-field',{
     user,
     title,

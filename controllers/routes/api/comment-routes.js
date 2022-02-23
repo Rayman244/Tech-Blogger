@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/:id", async (req, res) => {
-  console.log("hello world");
+  // console.log("hello world");
   console.log(req.body);
   try {
     // const dataJson = {
